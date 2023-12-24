@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-4">
+      <div class="card">
+        <img [src]="member.photoUrl || './assets/user.png'" [alt]="member.knownAs" class="card-img-top img-thumbnail">
+        <div class="card-body">
+          <div>
+            <strong>Lieu : </strong>
+            {{ member.city }}, {{ member.country }}
+          </div>
+          <div>
+            <strong>Age : </strong>
+            {{ member.age }}
+          </div>
+          <div>
+            <strong>Dernière activité : </strong>
+            {{ member.lastActive + 'Z' | timeago}}
+          </div>
+          <div>
+            <strong>Membre depuis : </strong>
+            {{ member.created | date:'dd MMM yyyy'}}
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-primary">Like</button>
+            <button (click)="selectTab('Messages')" class="btn btn-success">Messages</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+       <tabset  class="member-tabs" #memberTabs>
+
+        <tab heading="A propos {{member.knownAs}}" (selectTab)="onTabActivated($event)">
+          <h4>Description</h4>
+          
+          <p>{{member.introduction }}</p>
+          <h4>Recherche</h4>
+          
+          <p>{{ member.lookingFor }}</p>
+        </tab>
+        <tab heading="Interets" (selectTab)="onTabActivated($event)">
+          <h4>Interets</h4>
+          
+           <p> {{member.interests}}</p>
+        </tab>
+        <tab heading="Photos" #photosTab="tab" (selectTab)="onTabActivated($event)">
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+        </tab>
+        <tab heading="Messages" (selectTab)="onTabActivated($event)">
+          <app-member-messages [username]="member.userName" [messages]="messages"></app-member-messages>
+          
+        </tab>  
+       </tabset>
+    </div>
+  </div>
