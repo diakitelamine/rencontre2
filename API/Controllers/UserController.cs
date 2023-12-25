@@ -33,7 +33,6 @@ namespace API.Controllers
             
         }
 
-        //Définir une méthode qui gère une requête HTTP GET pour obtenir tous les utilisateurs
         [HttpGet]
         public async Task<ActionResult<PagedList<MemberDto>>> GetUsers( [FromQuery] UserParams userParams)
         {

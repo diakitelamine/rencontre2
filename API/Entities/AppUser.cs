@@ -1,16 +1,10 @@
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Authentication;
-using API.Extensions;
-using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace API.Entities
 {
-    public class AppUser
+    public class AppUser : IdentityUser <int> // we are using int as the primary key for the user table
     {
-        public int Id { get; set; }
-        public string  UserName { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
 
         public DateOnly DateOfBirth {get; set;}
 
@@ -41,6 +35,8 @@ namespace API.Entities
         public List<Message> MessagesSent {get; set;}
 
         public List<Message> MessagesReceived {get; set;}
+
+        public ICollection<AppUserRole> UserRoles { get; set; }
         
 
     }
