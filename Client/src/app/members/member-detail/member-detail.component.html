@@ -1,56 +1,55 @@
 <div class="row">
     <div class="col-4">
-      <div class="card">
-        <img [src]="member.photoUrl || './assets/user.png'" [alt]="member.knownAs" class="card-img-top img-thumbnail">
-        <div class="card-body">
-          <div>
-            <strong>Lieu : </strong>
-            {{ member.city }}, {{ member.country }}
-          </div>
-          <div>
-            <strong>Age : </strong>
-            {{ member.age }}
-          </div>
-          <div>
-            <strong>Dernière activité : </strong>
-            {{ member.lastActive + 'Z' | timeago}}
-          </div>
-          <div>
-            <strong>Membre depuis : </strong>
-            {{ member.created | date:'dd MMM yyyy'}}
-          </div>
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div class="mb-2" *ngIf="(presenceService.onlineUsers$ | async)?.includes(member.userName)">
+                    <i class="fa fa-user-circle text-success"></i> En ligne maintenant
+                </div>
+                <div>
+                    <strong>Emplacement :</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Âge :</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Dernière activité :</strong> 
+                    <p>{{member.lastActive | timeago}}</p>
+                </div>
+                <div>
+                    <strong>Membre depuis :</strong>
+                    <p>{{member.created | date:'dd MMM yyyy'}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">J'aime</button>
+                    <button (click)="selectTab('Messages')" class="btn btn-success">Message</button>
+                </div>
+            </div>
         </div>
-        <div class="card-footer">
-          <div class="btn-group d-flex">
-            <button class="btn btn-primary">Like</button>
-            <button (click)="selectTab('Messages')" class="btn btn-success">Messages</button>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="col-8">
-       <tabset  class="member-tabs" #memberTabs>
-
-        <tab heading="A propos {{member.knownAs}}" (selectTab)="onTabActivated($event)">
-          <h4>Description</h4>
-          
-          <p>{{member.introduction }}</p>
-          <h4>Recherche</h4>
-          
-          <p>{{ member.lookingFor }}</p>
-        </tab>
-        <tab heading="Interets" (selectTab)="onTabActivated($event)">
-          <h4>Interets</h4>
-          
-           <p> {{member.interests}}</p>
-        </tab>
-        <tab heading="Photos" #photosTab="tab" (selectTab)="onTabActivated($event)">
-          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
-        </tab>
-        <tab heading="Messages" (selectTab)="onTabActivated($event)">
-          <app-member-messages [username]="member.userName" [messages]="messages"></app-member-messages>
-          
-        </tab>  
-       </tabset>
+        <tabset class="member-tabset" #memberTabs>
+            <tab heading="À propos de {{member.knownAs}}" (selectTab)="onTabActivated($event)">
+                <h4>Description</h4>
+                <p>{{member.introduction}}</p>
+                <h4>Recherche</h4>
+                <p>{{member.lookingFor}}</p>
+            </tab>
+            <tab heading="Centres d'intérêt" (selectTab)="onTabActivated($event)">
+                <h4>Centres d'intérêt</h4>
+                <p>{{member.interests}}</p>
+            </tab>
+            <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActivated($event)">
+                <gallery *ngIf="photoTab.active" [items]="images" class="gallery"></gallery>
+            </tab>
+            <tab heading="Messages" (selectTab)="onTabActivated($event)">
+                <app-member-messages [username]="member.userName"></app-member-messages>
+            </tab>
+        </tabset>
     </div>
-  </div>
+</div>

@@ -1,8 +1,8 @@
 
 using API.Data;
 using API.Entities;
+using API.Errors;
 using API.Extensions;
-using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +24,7 @@ namespace API
          
             // On ajoute le service de contrôleurs MVC à notre conteneur de dépendances
             services.AddControllers();
-            services.AppApplicationServices(_config);
+            services.AddApplicationServices(_config);
             services.AddIdentityServices(_config);
             
         }

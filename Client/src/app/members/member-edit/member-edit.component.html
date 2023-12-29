@@ -1,65 +1,67 @@
 <div class="row" *ngIf="member">
     <div class="col-4">
-      <h1>Votre profil</h1>
+        <h1>Votre profil</h1>
     </div>
     <div class="col-8">
-      <div class="alert alert-info pb-0" *ngIf="editForm.dirty">
-        <p><strong>Information:</strong> Vous avez apporté des modifications. Toutes les modifications non enregistrées seront perdues</p>
-      </div>
+        <div class="alert alert-info pb-0" *ngIf="editForm.dirty">
+            <p><strong>Information : </strong>Vous avez apporté des modifications. Toutes les modifications non enregistrées seront perdues</p>
+        </div>
     </div>
     <div class="col-4">
-      <div class="card">
-        <img [src]="member.photoUrl || './assets/user.png'" [alt]="member.knownAs" class="card-img-top img-thumbnail">
-        <div class="card-body">
-          <div>
-            <strong>Lieu :</strong>
-            {{ member.city }}, {{ member.country }}
-          </div>
-          <div>
-            <strong>Age :</strong>
-            {{ member.age }}
-          </div>
-          <div>
-            <strong>Dernière activité :</strong>
-            {{ member.lastActive + 'Z' | timeago }}
-          </div>
-          <div>
-            <strong>Membre depuis :</strong>
-            {{ member.created | date:'dd MMM yyyy'}}
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="submit" form="editForm" [disabled]="!editForm.dirty"
-           class="btn btn-success col-12">Sauvegarder les modifications</button>
-        </div>
-      </div>
-    </div>
-    <div class="col-8">
-      <tabset class="member-tabs">
-        <tab heading="A propos {{ member.knownAs }}">
-          <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
-            <h4 class="mt-2">Description:</h4>
-            <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
-  
-            <h4 class="mt-2">À la recherche de:</h4>
-            <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
-  
-            <h4 class="mt-2">Intérêts:</h4>
-            <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
-            <h4 class="mt-2"> Détails de l'emplacement: </h4>
-            <div class="d-flex flex-row align-items-center">
-              <label for="city">City:</label>
-              <input type="text" [(ngModel)]="member.city" name="city" class="form-control mx-2">
-              <label for="country">Country:</label>
-              <input type="text" [(ngModel)]="member.country" name="country" class="form-control mx-2">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Emplacement :</strong>
+                    <p>{{member.city}}, {{member.country}}</p>
+                </div>
+                <div>
+                    <strong>Âge :</strong>
+                    <p>{{member.age}}</p>
+                </div>
+                <div>
+                    <strong>Dernière activité :</strong>
+                    <p>{{member.lastActive | timeago}}</p>
+                </div>
+                <div>
+                    <strong>Membre depuis :</strong>
+                    <p>{{member.created | date:'dd MMM yyyy'}}</p>
+                </div>
             </div>
-          </form>
-        </tab>
-        <tab heading="Modifier des photos">
-          <app-photo-editor [member]="member"></app-photo-editor>
-        </tab>
-      </tabset>
+            <div class="card-footer">
+                <button
+                    [disabled]="!editForm.dirty"
+                    type="submit" 
+                    form="editForm" 
+                    class="btn btn-success col-12">Enregistrer les modifications</button>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  
+
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading="À propos de {{member.knownAs}}">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    <h4 class="mt-2">Description</h4>
+                    <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
+                    <h4 class="mt-2">Recherche</h4>
+                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
+                    <h4>Centres d'intérêt</h4>
+                    <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
+                    <h4 class="mt-2">Détails de l'emplacement : </h4>
+                    <div class="d-flex flex-row align-items-center">
+                        <label for="city">Ville : </label>
+                        <input [(ngModel)]="member.city" type="text" name="city" class="form-control mx-2">
+                        <label for="city">Pays : </label>
+                        <input [(ngModel)]="member.country" type="text" name="country" class="form-control mx-2">
+                    </div>
+                </form>
+
+            </tab>
+            <tab heading="Éditer les photos">
+                <app-photo-editor [member]="member"></app-photo-editor>
+            </tab>
+        </tabset>
+    </div>
+</div>

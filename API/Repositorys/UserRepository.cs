@@ -28,6 +28,11 @@ namespace API.Repositorys
                 .SingleOrDefaultAsync();
         }
 
+        public Task<MemberDto> GetMemberAsync(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         //Retourner une liste d'utilisateurs
         public async Task<PagedList<MemberDto>> GetMembersAsync( UserParams userParams)
         {

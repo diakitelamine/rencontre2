@@ -10,7 +10,7 @@
   }
   
   .member-tabset > .nav-tabs > li.open > a, .member-tabset > .nav-tabs > li:hover > a {
-    border: 0;
+    border: 0 !important;
     background: none !important;
     color: #333333;
   }
@@ -45,3 +45,11 @@
     padding: 15px 0;
   }
   
+  .nav-tabs {
+      --bs-nav-tabs-border-width: 0px;
+  }
+
+  .gallery {
+    height: 500px;
+    background-color: white;
+  }

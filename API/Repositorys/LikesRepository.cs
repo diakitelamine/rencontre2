@@ -46,7 +46,7 @@ namespace API.Repositorys
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                Age = user.DateOfBirth.CalcuateAge(),
+                Age = user.DateOfBirth.CalculateAge(),
                 KnownAs = user.KnownAs,
                 PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain).Url,
                 City = user.City

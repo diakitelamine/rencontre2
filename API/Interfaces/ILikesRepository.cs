@@ -1,20 +1,12 @@
-
-using API.DTOs;
+﻿using API.DTOs;
 using API.Entities;
 using API.Helpers;
 
-namespace API.Interfaces
+namespace API.Interfaces;
+
+public interface ILikesRepository
 {
-    public interface ILikesRepository
-    {
-        Task<UserLike> GetUserLike(int sourceUserId, int likedUserId);
-        Task<AppUser> GetUserWithLikes(int userId);
-
-        Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams);
-
-        
-
-
-       
-    }
+    Task<UserLike> GetUserLike(int sourceUserId, int likedUserId);
+    Task<AppUser> GetUserWithLikes(int userId);
+    Task<PagedList<LikeDto>> GetUserLikes(LikesParams likesParams);
 }

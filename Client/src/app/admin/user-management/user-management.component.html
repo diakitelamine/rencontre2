@@ -2,8 +2,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 30%;">Username</th>
-                <th style="width: 40%;">Active Roles</th>
+                <th style="width: 30%;">Nom d'utilisateur</th>
+                <th style="width: 40%;">Rôles actifs</th>
                 <th style="width: 30%;"></th>
             </tr>
         </thead>
@@ -11,7 +11,7 @@
             <tr *ngFor="let user of users">
                 <td>{{user.username}}</td>
                 <td>{{user.roles}}</td>
-                <td><button (click)="openRolesModal(user)" class="btn btn-info">Edit Roles</button></td>
+                <td><button (click)="openRolesModal(user)" class="btn btn-info">Modifier les rôles</button></td>
             </tr>
         </tbody>
     </table>

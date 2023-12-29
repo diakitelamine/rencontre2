@@ -11,12 +11,12 @@ import { AccountService } from '../_services/account.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private accountService : AccountService) {}
+  constructor(private accountService: AccountService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    this.accountService.currentUser$.pipe(take(1)).subscribe( {
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
       next: user => {
-        if(user){
+        if (user) {
           request = request.clone({
             setHeaders: {
               Authorization: `Bearer ${user.token}`
@@ -24,7 +24,7 @@ export class JwtInterceptor implements HttpInterceptor {
           })
         }
       }
-    });
+    })
     return next.handle(request);
   }
 }

@@ -1,31 +1,24 @@
 <div class="text-center mt-3">
-    <h1>{{predicate === 'liked' ? 'Membres que j\'aime' : 'Membres qui m\'aiment'}}</h1>
+    <h2>{{predicate === 'liked' ? 'Membres que j\'aime' : 'Membres qui m\'aiment'}}</h2>
 </div>
 
 <div class="container mt-3">
     <div class="d-flex">
         <div class="btn-group" name="predicate">
-            <button class="btn btn-primary" 
-                    btnRadio="liked" 
-                    [(ngModel)]="predicate"
-                    (click)="loadLikes()">Membres que j'aime</button>
-            <button class="btn btn-primary" 
-                    btnRadio="likedBy" 
-                    (click)="loadLikes()"
-                    [(ngModel)]="predicate">Membres qui m'aiment</button>
-
+            <button class="btn btn-primary" btnRadio="liked" [(ngModel)]="predicate" (click)="loadLikes()">Membres que j'aime</button>
+            <button class="btn btn-primary" btnRadio="likedBy" [(ngModel)]="predicate" (click)="loadLikes()">Membres qui m'aiment</button>
         </div>
+    </div>    
 
-    </div>
     <div class="row mt-3">
         <div class="col-2" *ngFor="let member of members">
             <app-member-card [member]="member"></app-member-card>
         </div>
-    </div>       
+    </div>
 </div>
 
 <div class="d-flex justify-content-center" *ngIf="pagination">
-    <pagination 
+    <pagination
         [boundaryLinks]="true"
         [totalItems]="pagination.totalItems"
         [itemsPerPage]="pagination.itemsPerPage"
@@ -36,4 +29,5 @@
         nextText="&rsaquo;"
         firstText="&laquo;"
         lastText="&raquo;">
-</pagination>
+    </pagination>
+</div>

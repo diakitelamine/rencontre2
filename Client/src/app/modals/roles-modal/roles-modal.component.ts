@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { BsComponentRef } from 'ngx-bootstrap/component-loader';
+import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -20,4 +19,3 @@ export class RolesModalComponent {
   }
 
 }
-
