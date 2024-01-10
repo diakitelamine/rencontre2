@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
-var connString = string.Empty;
+var connString = "";
 
 if (builder.Environment.IsDevelopment()) 
     connString = builder.Configuration.GetConnectionString("DefaultConnection");
