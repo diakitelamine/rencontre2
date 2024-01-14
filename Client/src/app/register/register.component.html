@@ -19,7 +19,7 @@
     <app-text-input [formControl]="$any(registerForm.controls['country'])" [label]="'Pays'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Mot de passe'" [type]="'password'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirmer le mot de passe'" [type]="'password'"></app-text-input>
-  
+  ²
     <div class="row" *ngIf="validationErrors">
       <ul class="text-danger">
         <li *ngFor="let error of validationErrors">
